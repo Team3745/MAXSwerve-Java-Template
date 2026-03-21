@@ -86,7 +86,7 @@ public class RobotContainer {
 
     new JoystickButton(m_driverController, XboxController.Button.kRightBumper.value)
         .onTrue(new RunCommand(
-            () -> m_intakeSubsystem.intake(-0.70),
+            () -> m_intakeSubsystem.intake(-0.90),
             m_intakeSubsystem
     ));
 
@@ -98,7 +98,7 @@ public class RobotContainer {
 
     new JoystickButton(m_driverController, XboxController.Button.kLeftBumper.value)
         .onTrue(new RunCommand(
-            () -> m_intakeSubsystem.vomit(0.70),
+            () -> m_intakeSubsystem.vomit(0.90),
             m_intakeSubsystem
     ));
 
