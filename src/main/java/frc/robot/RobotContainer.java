@@ -26,6 +26,7 @@ import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.ShooterSubsystem;
 
 /*
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -37,6 +38,7 @@ public class RobotContainer {
   // The robot's subsystems
   public final DriveSubsystem m_robotDrive = new DriveSubsystem();
   public IntakeSubsystem m_intakeSubsystem = new IntakeSubsystem();
+  public ShooterSubsystem m_ShooterSubsystem = new ShooterSubsystem();
 
   // The driver's controller
   XboxController m_driverController = new XboxController(OIConstants.kDriverControllerPort);
@@ -107,6 +109,32 @@ public class RobotContainer {
             ()  -> m_intakeSubsystem.vomit(0),
             m_intakeSubsystem
     ));
+
+    new JoystickButton(m_driverController, XboxController.Button.kB.value)
+        .onTrue(new RunCommand(
+            () -> m_ShooterSubsystem.shoot(0.70),
+            m_ShooterSubsystem
+    ));
+    
+    new JoystickButton(m_driverController, XboxController.Button.kB.value)
+        .onFalse(new RunCommand(
+            () -> m_ShooterSubsystem.shoot(0),
+            m_ShooterSubsystem
+    ));
+
+    new JoystickButton(m_driverController, XboxController.Button.kA.value)
+        .onTrue(new RunCommand(
+            () -> m_ShooterSubsystem.unshoot(0.70),
+            m_ShooterSubsystem
+    ));
+
+    new JoystickButton(m_driverController, XboxController.Button.kA.value)
+        .onFalse(new RunCommand(
+            () -> m_ShooterSubsystem.unshoot(0),
+            m_ShooterSubsystem
+    ));
+
+
   }
 
   /**
