@@ -4,12 +4,13 @@
 
 package frc.robot;
 
-import org.opencv.core.Mat;
-
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import edu.wpi.first.wpilibj2.command.RunCommand;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
+import frc.robot.subsystems.IntakeSubsystem;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -21,6 +22,8 @@ public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
 
   private RobotContainer m_robotContainer;
+  private IntakeSubsystem m_intakeSubsystem2;
+
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -31,6 +34,7 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
+    m_intakeSubsystem2 = m_robotContainer.m_intakeSubsystem;
   }
 
   /**
@@ -77,7 +81,22 @@ public class Robot extends TimedRobot {
 
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
-      CommandScheduler.getInstance().schedule(m_autonomousCommand);
+
+      System.out.println("It got her! (:");
+      CommandScheduler.getInstance().schedule(
+        m_autonomousCommand
+        // new WaitCommand(5.0),
+        // new RunCommand(
+        //     ()  -> m_intakeSubsystem2.vomit(0.90),
+        //     m_intakeSubsystem2
+        // ),
+        // new WaitCommand(5.0),
+        // new RunCommand(
+        //     () -> m_intakeSubsystem2.vomit(0),
+        //     m_intakeSubsystem2)
+        );
+
+      System.out.println("It ended (:");
     }
   }
 
